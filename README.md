@@ -1,7 +1,7 @@
 # BetterReloader
 BetterReloader is a Bukkit plugin with the purpose of allowing server admins to quickly manage their plugins.
 <br/>
-Hosted on Spigot: https://www.spigotmc.org/
+Hosted on Spigot: https://www.spigotmc.org/resources/betterreloader.64409/
 
 > **This plugin is a rewrite of [jmgr2007](https://github.com/jmgr2007)'s Reloader plugin as they have stopped developing it.**<br/>
 > Source: https://github.com/jmgr2007/Reloader<br/>
