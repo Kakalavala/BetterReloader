@@ -1,0 +1,53 @@
+main: 'me.kakalavala.reloader.core.Core'
+name: BetterReloader
+version: 1.0
+api-version: 1.13
+description: Reload or disable plugins at will.
+author: Kakalavala
+loadbefore: [Reloader]
+
+commands:
+  reloader:
+    description: Index command for BetterReloader
+
+permissions:
+  reloader.*:
+    description: Parent permission, can do everything.
+    default: op
+    children:
+      reloader.reload: true
+      reloader.load: true
+      reloader.unload: true
+      reloader.enable: true
+      reloader.disable: true
+      reloader.status: true
+      reloader.info: true
+      reloader.config: true
+      reloader.list: true
+  reloader.reload:
+    description: Permission to reload plugins
+    default: op
+  reloader.load:
+    description: Permission to load plugins
+    default: op
+  reloader.unload: 
+    description: Permission to unload plugins
+    default: op
+  reloader.enable:
+    description: Permission to enable plugins
+    default: op
+  reloader.disable:
+    description: Permission to disable plugins
+    default: op
+  reloader.status:
+    description: Permission to check the status of plugins
+    default: op
+  reloader.info:
+    description: Permission to get information on plugins
+    default: op
+  reloader.config:
+    description: Permission to reload configuration files of plugins
+    default: op
+  reloader.list:
+    description: see reloader's plugins list
+    default: op

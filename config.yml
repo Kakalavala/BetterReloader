@@ -1,0 +1,8 @@
+# The prefix displayed in messages.
+prefix: '&4&l[&6Reloader&4&l]'
+# This will override the default /pl (/plugins) and replace it with BetterReloader's version.
+# This will not override console's /pl (/plugins).
+override-pl: true
+# Plugins exempt from unload/disable
+exempt-plugins:
+- 'BetterReloader'
