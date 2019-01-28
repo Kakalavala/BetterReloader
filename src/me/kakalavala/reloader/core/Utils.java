@@ -130,13 +130,7 @@ public class Utils {
 					reloadListeners = false;
 				}
 			}
-		} catch (IllegalArgumentException exc) {
-			exc.printStackTrace();
-		} catch (NoSuchFieldException exc) {
-			exc.printStackTrace();
-		} catch (SecurityException exc) {
-			exc.printStackTrace();
-		} catch (IllegalAccessException exc) {
+		}  catch (IllegalArgumentException | NoSuchFieldException | SecurityException | IllegalAccessException exc) {
 			exc.printStackTrace();
 		}
 		
