@@ -36,7 +36,7 @@ public class Utils {
 	public void load(final String plName, final CommandSender sender, final boolean isReloading) {
 		for (final Plugin pl : core.pm.getPlugins()) {
 			if (pl.getName().toLowerCase().startsWith(plName.toLowerCase())) {
-				core.msg(sender, String.format("§c%s is already loaded.", plName));
+				core.msg(sender, String.format("Â§c%s is already loaded.", plName));
 				return;
 			}
 		}
@@ -51,7 +51,7 @@ public class Utils {
 				try {
 					name = core.getPluginLoader().getPluginDescription(comp).getName();
 				} catch (InvalidDescriptionException exc) {
-					core.msg(sender, String.format("§c%s has an incorrect description.", comp.getName()));
+					core.msg(sender, String.format("Â§c%s has an incorrect description.", comp.getName()));
 					return;
 				}
 			
@@ -61,13 +61,13 @@ public class Utils {
 					try {
 						core.pm.loadPlugin(comp);
 					} catch (UnknownDependencyException exc) {
-						core.msg(sender, String.format("§c%s is missing a dependant plugin.", comp.getName()));
+						core.msg(sender, String.format("Â§c%s is missing a dependant plugin.", comp.getName()));
 						return;
 					} catch (InvalidPluginException exc) {
-						core.msg(sender, String.format("§c%s is not a plugin.", comp.getName()));
+						core.msg(sender, String.format("Â§c%s is not a plugin.", comp.getName()));
 						return;
 					} catch (InvalidDescriptionException exc) {
-						core.msg(sender, String.format("§c%s has an incorrect description.", comp.getName()));
+						core.msg(sender, String.format("Â§c%s has an incorrect description.", comp.getName()));
 						return;
 					}
 				}
@@ -81,7 +81,7 @@ public class Utils {
 						core.pm.enablePlugin(pl);
 						
 						if (!isReloading)
-							core.msg(sender, String.format("§a%s was loaded and enabled.", plName));
+							core.msg(sender, String.format("Â§a%s was loaded and enabled.", plName));
 					}
 				} catch (InvalidDescriptionException exc) {
 					exc.printStackTrace();
@@ -91,10 +91,10 @@ public class Utils {
 		}
 	}
 	
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings("unchecked")
 	public void unload(final String plName, final CommandSender sender, final boolean isReloading) {
 		if (core.isExempt(plName) && !isReloading) {
-			core.msg(sender, String.format("§cCould not unload %s, it is exempt.", plName));
+			core.msg(sender, String.format("Â§cCould not unload %s, it is exempt.", plName));
 			return;
 		}
 		
@@ -114,7 +114,6 @@ public class Utils {
 			if (spm != null) {
 				final Field pluginsField = spm.getClass().getDeclaredField("plugins");
 				final Field lookupField = spm.getClass().getDeclaredField("lookupNames");
-				final Field cmdField = spm.getClass().getDeclaredField("commandMap");
 				
 				pluginsField.setAccessible(true);
 				plugins = (List<Plugin>) pluginsField.get(spm);
@@ -194,22 +193,22 @@ public class Utils {
 				unloaded = true;
 				
 				if (!isReloading)
-					core.msg(sender, String.format("§2%s was unloaded and disabled.", plName));
+					core.msg(sender, String.format("Â§2%s was unloaded and disabled.", plName));
 				
 				break;
 			}
 		}
 		
 		if (!unloaded)
-			core.msg(sender, String.format("§c%s is not a loaded plugin.", plName));
+			core.msg(sender, String.format("Â§c%s is not a loaded plugin.", plName));
 	}
 	
 	public void reload(final String plName, final CommandSender sender) {
 		this.unload(plName, sender, true);
 		this.load(plName, sender, true);
 		
-		core.msg(sender, String.format("§a%s has been reloaded.", plName));
-		core.msg(sender, String.format("§cAliases for %s might not work as expectedly.", plName));
+		core.msg(sender, String.format("Â§a%s has been reloaded.", plName));
+		core.msg(sender, String.format("Â§cAliases for %s might not work as expectedly.", plName));
 	}
 	
 	public void reloadConfig(final String plName, final CommandSender sender) {
@@ -218,17 +217,17 @@ public class Utils {
 		for (final Plugin pl : core.pm.getPlugins()) {
 			if (pl.getName().toLowerCase().startsWith(plName.toLowerCase())) {
 				reloaded = true;
-				core.msg(sender, String.format("§cFailed to reload %s's config.", plName));
+				core.msg(sender, String.format("Â§cFailed to reload %s's config.", plName));
 				break;
 			}
 		}
 		
-		core.msg(sender, ((reloaded) ? String.format("§aReloaded %s's config.", plName) : String.format("§cFailed to reload %s's config.", plName)));
+		core.msg(sender, ((reloaded) ? String.format("Â§aReloaded %s's config.", plName) : String.format("Â§cFailed to reload %s's config.", plName)));
 	}
 	
 	public void disable(final String plName, final CommandSender sender) {
 		if (core.isExempt(plName)) {
-			core.msg(sender, String.format("§cCould not disable %s, it is exempt.", plName));
+			core.msg(sender, String.format("Â§cCould not disable %s, it is exempt.", plName));
 			return;
 		}
 			
@@ -244,7 +243,7 @@ public class Utils {
 			}
 		}
 		
-		core.msg(sender, (disabled) ? String.format("§2%s was disabled.", plName) : String.format("§c%s could not be disabled.", plName));
+		core.msg(sender, (disabled) ? String.format("Â§2%s was disabled.", plName) : String.format("Â§c%s could not be disabled.", plName));
 	}
 	
 	public void enable(final String plName, final CommandSender sender) {
@@ -260,7 +259,7 @@ public class Utils {
 			}
 		}
 		
-		core.msg(sender, (enabled) ? String.format("§a%s was enabled.", plName) : String.format("§c%s could not be enabled.", plName));
+		core.msg(sender, (enabled) ? String.format("Â§a%s was enabled.", plName) : String.format("Â§c%s could not be enabled.", plName));
 	}
 
 	public void info(final String plName, final CommandSender sender) {
@@ -268,7 +267,7 @@ public class Utils {
 			final PluginDescriptionFile pf = core.pm.getPlugin(plName).getDescription();
 			final List<String> pluginInfo = new ArrayList<String>();
 			
-			pluginInfo.add("§cPlugin Name: §a" + pf.getName());
+			pluginInfo.add("Â§cPlugin Name: Â§a" + pf.getName());
 			
 			if (pf.getAuthors() != null && !pf.getAuthors().isEmpty()) {
 				String auths = "";
@@ -276,38 +275,38 @@ public class Utils {
 				for (final String auth : pf.getAuthors())
 					auths += auth + ", ";
 				
-				pluginInfo.add("§cAuthor(s): §a" + auths.substring(0, auths.length() - 2));
+				pluginInfo.add("Â§cAuthor(s): Â§a" + auths.substring(0, auths.length() - 2));
 			}
 			
 			if (pf.getDescription() != null)
-				pluginInfo.add("§cDescription: §a" + pf.getDescription());
+				pluginInfo.add("Â§cDescription: Â§a" + pf.getDescription());
 			
 			if (pf.getVersion() != null)
-				pluginInfo.add("§cVersion: §a" + pf.getVersion());
+				pluginInfo.add("Â§cVersion: Â§a" + pf.getVersion());
 			
 			if (pf.getAPIVersion() != null)
-				pluginInfo.add("§cAPI-Version: §a" + pf.getAPIVersion());
+				pluginInfo.add("Â§cAPI-Version: Â§a" + pf.getAPIVersion());
 			
 			if (pf.getWebsite() != null)
-				pluginInfo.add("§cWebsite: §a" + pf.getWebsite());
+				pluginInfo.add("Â§cWebsite: Â§a" + pf.getWebsite());
 			
 			if (pf.getDepend() != null && !pf.getDepend().isEmpty()) {
-				pluginInfo.add("§cRequired Plugins:");
+				pluginInfo.add("Â§cRequired Plugins:");
 				
 				for (final String dep : pf.getDepend())
-					pluginInfo.add("§c* §a" + dep);
+					pluginInfo.add("Â§c* Â§a" + dep);
 			}
 			
 			if (pf.getSoftDepend() != null && !pf.getSoftDepend().isEmpty()) {
-				pluginInfo.add("§cRecommended Plugins:");
+				pluginInfo.add("Â§cRecommended Plugins:");
 				
 				for (final String dep : pf.getSoftDepend())
-					pluginInfo.add("§c* §a" + dep);
+					pluginInfo.add("Â§c* Â§a" + dep);
 			}
 			
 			sender.sendMessage(pluginInfo.toArray(new String[pluginInfo.size()]));
 		} catch (Exception exc) {
-			core.msg(sender, String.format("§cCould not receive info for %s.", plName));
+			core.msg(sender, String.format("Â§cCould not receive info for %s.", plName));
 		}
 	}
 	
@@ -315,9 +314,9 @@ public class Utils {
 		try {
 			final Plugin pl = core.pm.getPlugin(plName);
 			
-			core.msg(sender, String.format("§6%s is currently: %s", plName, ((pl.isEnabled()) ? "§aEnabled" : "§cDisabled")));
+			core.msg(sender, String.format("Â§6%s is currently: %s", plName, ((pl.isEnabled()) ? "Â§aEnabled" : "Â§cDisabled")));
 		} catch (Exception exc) {
-			core.msg(sender, String.format("§cFailed to get the status of %s.", plName));
+			core.msg(sender, String.format("Â§cFailed to get the status of %s.", plName));
 		}
 	}
 	
@@ -332,26 +331,26 @@ public class Utils {
 			else disabled.add(pl.getName());
 		}
 		
-		core.msg(sender, String.format("§2%s plugins loaded.", loaded));
+		core.msg(sender, String.format("Â§2%s plugins loaded.", loaded));
 		
 		Collections.sort(enabled, String.CASE_INSENSITIVE_ORDER);
 		Collections.sort(disabled, String.CASE_INSENSITIVE_ORDER);
 		
-		sender.sendMessage(String.format("§6Enabled §8(§a%s§8)§6:", enabled.size()));
+		sender.sendMessage(String.format("Â§6Enabled Â§8(Â§a%sÂ§8)Â§6:", enabled.size()));
 		
 		String ebl = "";
 		String dbl = "";
 		
 		for (final String pl : enabled)
-			ebl += "§a" + pl + ((sorted) ? "§7 " + core.pm.getPlugin(pl).getDescription().getVersion() : "") + "§a, ";
+			ebl += "Â§a" + pl + ((sorted) ? "Â§7 " + core.pm.getPlugin(pl).getDescription().getVersion() : "") + "Â§a, ";
 		
 		for (final String pl : disabled)
-			dbl += "§c" + pl + ((sorted) ? "§7 " + core.pm.getPlugin(pl).getDescription().getVersion() : "") + "§c, ";
+			dbl += "Â§c" + pl + ((sorted) ? "Â§7 " + core.pm.getPlugin(pl).getDescription().getVersion() : "") + "Â§c, ";
 		
 		if (enabled.size() > 0)
 			sender.sendMessage(ebl.substring(0, ebl.length() - 2));
 		
-		sender.sendMessage(String.format("§6Disabled §8(§c%s§8)§6:", disabled.size()));
+		sender.sendMessage(String.format("Â§6Disabled Â§8(Â§c%sÂ§8)Â§6:", disabled.size()));
 		
 		if (disabled.size() > 0)
 			sender.sendMessage(dbl.substring(0, dbl.length() - 2));
